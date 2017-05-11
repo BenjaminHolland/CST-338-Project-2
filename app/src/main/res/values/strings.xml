@@ -17,4 +17,5 @@
     <string name="PASSWORD">Password</string>
     <string name="USERNAME">Username</string>
     <string name="LOGIN">Login</string>
+    <string name="CONFIRM">Confirm</string>
 </resources>
