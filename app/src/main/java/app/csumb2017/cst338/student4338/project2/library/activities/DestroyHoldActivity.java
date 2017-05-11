@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ListView;
 
 import java.util.StringJoiner;
 
@@ -41,6 +42,7 @@ public class DestroyHoldActivity extends AppCompatActivity {
                 Log.i("DestroyHold", bldr.toString());
             }
         };
+        ((ListView)findViewById(R.id.hold_list)).setAdapter(adapter);
 
     }
 }
