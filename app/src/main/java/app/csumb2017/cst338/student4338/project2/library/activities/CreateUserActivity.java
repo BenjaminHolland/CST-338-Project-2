@@ -93,7 +93,7 @@ public class CreateUserActivity extends AppCompatActivity {
                     if(!isPasswordValid(password)){
                         throw new CreateUserInvalidPassword();
                     }
-                    db.getWritableDatabase().insert()
+                    db.createUser(username,password);
                 }catch(Exception ex){
                     onError(ex);
                 }
