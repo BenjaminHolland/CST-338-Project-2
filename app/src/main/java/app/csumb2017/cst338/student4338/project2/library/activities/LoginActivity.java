@@ -47,6 +47,10 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void launchDestroyHold(int user){
         Log.v("LOGIN","Launching Hold Destroyer.");
+        Intent destroyHoldIntent=new Intent(LoginActivity.this,DestroyHoldActivity.class);
+        destroyHoldIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+        destroyHoldIntent.putExtra("USER",user);
+        startActivity(destroyHoldIntent);
         finish();
     }
     private final int errorCounterMax=1;
