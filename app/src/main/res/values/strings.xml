@@ -14,4 +14,7 @@
     <string name="CREATE_HOLD">Place Hold</string>
     <string name="DESTROY_HOLD">Cancel Hold</string>
     <string name="MANAGE_SYSTEM">Manage System</string>
+    <string name="PASSWORD">Password</string>
+    <string name="USERNAME">Username</string>
+    <string name="LOGIN">Login</string>
 </resources>
