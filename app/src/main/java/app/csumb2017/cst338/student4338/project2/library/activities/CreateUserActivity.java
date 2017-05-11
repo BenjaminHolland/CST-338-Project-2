@@ -62,7 +62,7 @@ public class CreateUserActivity extends AppCompatActivity {
         }
     }
     private void onError(Throwable error){
-        Log.e("LOGIN","Failure",error);
+        Log.e("UserCreateAttempt","Failure",error);
         db.log("UserCreateAttempt|Failure|\""+error.getMessage()+"\"");
         AlertDialog.Builder bldr=new AlertDialog.Builder(this);
         bldr.setTitle("Error");
@@ -94,6 +94,9 @@ public class CreateUserActivity extends AppCompatActivity {
                         throw new CreateUserInvalidPassword();
                     }
                     db.createUser(username,password);
+                    db.log("UserCreateAttempt|Success|\"Created "+username+"\"");
+                    CreateUserActivity.this.setResult(RESULT_OK);
+                    CreateUserActivity.this.finish();
                 }catch(Exception ex){
                     onError(ex);
                 }
