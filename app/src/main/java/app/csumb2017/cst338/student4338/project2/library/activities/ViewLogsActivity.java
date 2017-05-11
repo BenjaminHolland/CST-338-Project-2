@@ -69,7 +69,12 @@ public class ViewLogsActivity extends AppCompatActivity {
             }
         };
         ((ListView)findViewById(R.id.log_list)).setAdapter(logAdapter);
-        
+        (findViewById(R.id.confirm_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onLeaving();
+            }
+        });
 
     }
 }
