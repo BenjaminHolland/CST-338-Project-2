@@ -43,10 +43,10 @@ public class DestroyHoldActivity extends AppCompatActivity {
                 final Timestamp checkin=Timestamp.valueOf(cursor.getString(4));
                 final double fee=cursor.getDouble(6);
                 final String title=cursor.getString(9);
-                ((TextView)findViewById(R.id.title_view)).setText(title);
-                ((TextView)findViewById(R.id.fee_view)).setText(feeFormat.format(fee));
-                ((TextView)findViewById(R.id.checkout_view)).setText(checkout.toString());
-                ((TextView)findViewById(R.id.checkin_view)).setText(checkin.toString());
+                ((TextView)view.findViewById(R.id.title_view)).setText(title);
+                ((TextView)view.findViewById(R.id.fee_view)).setText(feeFormat.format(fee));
+                ((TextView)view.findViewById(R.id.checkout_view)).setText(checkout.toString());
+                ((TextView)view.findViewById(R.id.checkin_view)).setText(checkin.toString());
             }
         };
         ((ListView)findViewById(R.id.hold_list)).setAdapter(adapter);
