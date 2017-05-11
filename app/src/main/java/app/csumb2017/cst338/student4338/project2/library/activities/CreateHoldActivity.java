@@ -29,7 +29,7 @@ public class CreateHoldActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_hold);
         final int user=getIntent().getIntExtra("USER",-1);
-        db=new LibraryDataHelper(this);
+        db=LibraryDataHelper.getInstance(this);
         CursorAdapter adapter=new CursorAdapter(this,db.getAvailableBooks(),false) {
             @Override
             public View newView(Context context, Cursor cursor, ViewGroup parent) {

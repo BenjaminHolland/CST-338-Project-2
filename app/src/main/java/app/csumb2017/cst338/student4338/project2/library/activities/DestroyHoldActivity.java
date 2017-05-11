@@ -27,7 +27,7 @@ public class DestroyHoldActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_destroy_hold);
         id=getIntent().getIntExtra("USER",-1);
-        db=new LibraryDataHelper(this);
+        db=LibraryDataHelper.getInstance(this);
         CursorAdapter adapter=new CursorAdapter(this,db.getHoldsForUser(id),false) {
             @Override
             public View newView(Context context, Cursor cursor, ViewGroup parent) {

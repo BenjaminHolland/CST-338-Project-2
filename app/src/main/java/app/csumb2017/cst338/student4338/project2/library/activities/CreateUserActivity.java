@@ -80,7 +80,7 @@ public class CreateUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_user);
-        db=new LibraryDataHelper(this);
+        db=LibraryDataHelper.getInstance(this);
         findViewById(R.id.confirm_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
         loginAdmit=intent.getStringExtra(getString(R.string.LOGIN_ADMIT_TYPE));
         loginAction=intent.getStringExtra(getString(R.string.LOGIN_ACTION_TYPE));
         ensureTargets();
-        db=new LibraryDataHelper(this);
+        db=LibraryDataHelper.getInstance(this);
         final EditText usernameInput=(EditText)findViewById(R.id.username_input);
         final EditText passwordInput=(EditText)findViewById(R.id.password_input);
         findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {

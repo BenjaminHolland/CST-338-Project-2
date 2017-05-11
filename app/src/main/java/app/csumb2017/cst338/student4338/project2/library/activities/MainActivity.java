@@ -1,11 +1,13 @@
 package app.csumb2017.cst338.student4338.project2.library.activities;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
 import app.csumb2017.cst338.student4338.project2.library.R;
+import app.csumb2017.cst338.student4338.project2.library.data.LibraryDataHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Set up the database connection.
+        SQLiteOpenHelper helper= LibraryDataHelper.getInstance(this);
         findViewById(R.id.create_user_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

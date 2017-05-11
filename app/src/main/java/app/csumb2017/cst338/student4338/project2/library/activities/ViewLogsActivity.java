@@ -22,7 +22,7 @@ public class ViewLogsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_logs);
         int user=getIntent().getIntExtra("USER",-1);
 
-        db=new LibraryDataHelper(this);
+        db=LibraryDataHelper.getInstance(this);
         db.log("AdminLogin|Success|\"Users.Id="+String.valueOf(user)+"\"");
         CursorAdapter logAdapter=new CursorAdapter(this,db.getLogs(),false) {
             @Override
