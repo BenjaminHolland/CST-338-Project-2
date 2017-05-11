@@ -17,10 +17,21 @@ import app.csumb2017.cst338.student4338.project2.library.LoginUserNotFoundExcept
  */
 
 public class LibraryDataHelper extends SQLiteOpenHelper {
+    private final static Object lazy_sync=new Object();
+    private static LibraryDataHelper instance;
+    public static LibraryDataHelper getInstance(Context context){
+        synchronized (lazy_sync){
+            if(instance==null){
+                instance=new LibraryDataHelper(context.getApplicationContext());
+            }
+        }
+        return instance;
+    }
+
     private final static String dbFileName = "Library.db";
     private final static int dbVersion = 1;
 
-    public LibraryDataHelper(Context context) {
+    private LibraryDataHelper(Context context) {
         super(context, dbFileName, null, dbVersion);
     }
 
