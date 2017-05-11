@@ -78,7 +78,25 @@ public class LibraryDataHelper extends SQLiteOpenHelper {
                 null,
                 LibraryDataContract.Logs.Columns.When);
     }
+    public Cursor getHoldsForUser(int user){
+        return getReadableDatabase().rawQuery(
+                "SELECT * FROM "+LibraryDataContract.Holds.TableName+
+                        " WHERE "+LibraryDataContract.Holds.Columns.TargetUser+"=?"+
+                        " AND "+LibraryDataContract.Holds.Columns.IsActive+"=1",new String[]{String.valueOf(user)});
+    }
+    public void createHold(int user,int book,double totalFee){
 
+    }
+    public void destroyHold(int hold){
+        ContentValues disableHold=new ContentValues();
+        disableHold.put(LibraryDataContract.Holds.Columns.IsActive,0);
+        getWritableDatabase().update(
+                LibraryDataContract.Holds.TableName,
+                disableHold,
+                LibraryDataContract.Holds.Columns._ID+"=?",
+                new String[]{String.valueOf(hold)}
+        );
+    }
     public Cursor getAvailableBooks() {
         return getReadableDatabase().rawQuery(
                 "SELECT * FROM " + LibraryDataContract.Books.TableName +

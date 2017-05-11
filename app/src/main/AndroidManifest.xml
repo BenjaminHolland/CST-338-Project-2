@@ -19,7 +19,8 @@
         <activity android:name=".activities.CreateUserActivity" />
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.ViewLogsActivity" />
-        <activity android:name=".activities.CreateHoldActivity"></activity>
+        <activity android:name=".activities.CreateHoldActivity" />
+        <activity android:name=".activities.DestroyHoldActivity"></activity>
     </application>
 
 </manifest>
