@@ -10,8 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import java.util.StringJoiner;
+import java.sql.Timestamp;
+import java.text.DecimalFormat;
+
 
 import app.csumb2017.cst338.student4338.project2.library.R;
 import app.csumb2017.cst338.student4338.project2.library.data.LibraryDataHelper;
@@ -33,14 +36,17 @@ public class DestroyHoldActivity extends AppCompatActivity {
 
             @Override
             public void bindView(View view, Context context, Cursor cursor) {
-                StringBuilder bldr=new StringBuilder();
-                String[] columnNames=cursor.getColumnNames();
-                for(int i=0;i<columnNames.length-1;i++){
-                    bldr.append(columnNames[i]);
-                    bldr.append(",");
-                }
-                bldr.append(columnNames[columnNames.length-1]);
-                Log.i("DestroyHold", bldr.toString());
+
+                final DecimalFormat feeFormat=new DecimalFormat("\u00A4#0.00");
+                final int holdId=cursor.getInt(0);
+                final Timestamp checkout= Timestamp.valueOf(cursor.getString(3));
+                final Timestamp checkin=Timestamp.valueOf(cursor.getString(4));
+                final double fee=cursor.getDouble(6);
+                final String title=cursor.getString(9);
+                ((TextView)findViewById(R.id.title_view)).setText(title);
+                ((TextView)findViewById(R.id.fee_view)).setText(feeFormat.format(fee));
+                ((TextView)findViewById(R.id.checkout_view)).setText(checkout.toString());
+                ((TextView)findViewById(R.id.checkin_view)).setText(checkin.toString());
             }
         };
         ((ListView)findViewById(R.id.hold_list)).setAdapter(adapter);

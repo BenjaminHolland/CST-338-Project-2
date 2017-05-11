@@ -43,7 +43,7 @@ public class CreateHoldActivity extends AppCompatActivity {
 
                 //It feels very strange capturing the context of a method in a class. Maybe this
                 //is just a java thing, but it seems kind of inefficient.
-                final DecimalFormat feeFormat=new DecimalFormat("\u00A4#0..00");
+                final DecimalFormat feeFormat=new DecimalFormat("\u00A4#0.00");
                 final int id=cursor.getInt(0);
                 final String title=cursor.getString(1);
                 final String author=cursor.getString(2);
