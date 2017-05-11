@@ -1,7 +1,10 @@
 package app.csumb2017.cst338.student4338.project2.library.activities;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +19,35 @@ import app.csumb2017.cst338.student4338.project2.library.data.LibraryDataHelper;
 
 public class ViewLogsActivity extends AppCompatActivity {
     LibraryDataHelper db;
+
+    void onLeaving(){
+        AlertDialog.Builder bldr=new AlertDialog.Builder(getApplicationContext());
+        bldr.setMessage(R.string.CREATE_BOOK_PROMPT);
+        bldr.setPositiveButton(R.string.YES, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent createBookIntent=new Intent(getApplicationContext(),CreateBookActivity.class);
+                createBookIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+                startActivity(createBookIntent);
+                finish();
+            }
+        });
+        bldr.setNegativeButton(R.string.NO, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                setResult(RESULT_CANCELED);
+                finish();
+            }
+        });
+        bldr.setCancelable(false);
+        bldr.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        onLeaving();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,5 +69,7 @@ public class ViewLogsActivity extends AppCompatActivity {
             }
         };
         ((ListView)findViewById(R.id.log_list)).setAdapter(logAdapter);
+        
+
     }
 }
