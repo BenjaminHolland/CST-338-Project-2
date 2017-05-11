@@ -13,6 +13,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        findViewById(R.id.create_user_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent createUserIntent=new Intent(MainActivity.this,CreateUserActivity.class);
+                startActivityForResult(createUserIntent,0);
+            }
+        });
         findViewById(R.id.create_hold_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
