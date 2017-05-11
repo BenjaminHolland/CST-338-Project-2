@@ -6,6 +6,8 @@
     <string name="LOGIN_ACTION_CREATE_HOLD">LOGIN_ACTION_CREATE_HOLD</string>
     <string name="LOGIN_ACTION_DESTROY_HOLD">LOGIN_ACTION_DESTROY_HOLD</string>
     <string name="LOGIN_ACTION_MANAGE_SYSTEM">LOGIN_ACTION_MANAGE_SYSTEM</string>
+    <string name="HOLD_VIEW_TARGET_BOOK_TAG">TAG_TARGET_BOOK</string>
+    <string name="HOLD_VIEW_TARGET_FEE_TAG">TAG_TARGET_FEE</string>
     <string name="app_name">Library</string>
 
     <!-- TODO: Remove or change this placeholder text -->
