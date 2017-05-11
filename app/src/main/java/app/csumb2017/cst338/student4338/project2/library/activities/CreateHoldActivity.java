@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -38,9 +39,21 @@ public class CreateHoldActivity extends AppCompatActivity {
 
             @Override
             public void bindView(View view, Context context, Cursor cursor) {
-                ((TextView)view.findViewById(R.id.title_view)).setText(cursor.getString(1));
-                view.setTag(R.string.HOLD_VIEW_TARGET_BOOK_TAG,cursor.getInt(0));
-                view.setTag(R.string.HOLD_VIEW_TARGET_FEE_TAG,cursor.getFloat(4));
+
+                //It feels very strange capturing the context of a method in a class. Maybe this
+                //is just a java thing, but it seems kind of inefficient.
+                final DecimalFormat feeFormat=new DecimalFormat("\u00A4#.00");
+                final int id=cursor.getInt(0);
+                final String title=cursor.getString(1);
+                final String author=cursor.getString(2);
+                final String isbn=cursor.getString(3);
+                final double fee=cursor.getDouble(4);
+
+                ((TextView)view.findViewById(R.id.title_view)).setText(title);
+                ((TextView)view.findViewById(R.id.author_view)).setText(author);
+                ((TextView)view.findViewById(R.id.fee_view)).setText(feeFormat.format(fee));
+                ((TextView)view.findViewById(R.id.isbn_view)).setText(isbn);
+
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -52,9 +65,8 @@ public class CreateHoldActivity extends AppCompatActivity {
                         checkin.setTime(now);
                         creation.setTime(now);
                         checkin.add(Calendar.DAY_OF_YEAR,10);
-                        double feeTotal=(double)(float)v.getTag(R.string.HOLD_VIEW_TARGET_FEE_TAG);
-                        feeTotal*=10*24;
-                        db.log("PlaceHold|Success|\"Book="+String.valueOf((int)v.getTag(R.string.HOLD_VIEW_TARGET_BOOK_TAG))+"\"");
+                        double feeTotal=fee*10*24;
+                        db.log("PlaceHold|Success|\"Book="+String.valueOf(id)+"\"");
                         db.getWritableDatabase().insertOrThrow(LibraryDataContract.Holds.TableName,null,
                                 LibraryDataContract.Holds.buildEntry(
                                         user,
