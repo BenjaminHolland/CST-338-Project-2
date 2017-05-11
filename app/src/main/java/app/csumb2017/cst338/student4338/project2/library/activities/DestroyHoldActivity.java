@@ -47,6 +47,21 @@ public class DestroyHoldActivity extends AppCompatActivity {
                 ((TextView)view.findViewById(R.id.fee_view)).setText(feeFormat.format(fee));
                 ((TextView)view.findViewById(R.id.checkout_view)).setText(checkout.toString());
                 ((TextView)view.findViewById(R.id.checkin_view)).setText(checkin.toString());
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try{
+                            db.destroyHold(holdId);
+                            db.log("DestroyHold|Success|\"Hold="+String.valueOf(holdId)+"\"");
+                            DestroyHoldActivity.this.setResult(RESULT_OK);
+
+                        }catch(Exception ex){
+                            db.log("DestroyHold|Failure|"+ex.getMessage());
+                            DestroyHoldActivity.this.setResult(RESULT_CANCELED);
+                        }
+                        DestroyHoldActivity.this.finish();
+                    }
+                });
             }
         };
         ((ListView)findViewById(R.id.hold_list)).setAdapter(adapter);
