@@ -20,7 +20,8 @@
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.ViewLogsActivity" />
         <activity android:name=".activities.CreateHoldActivity" />
-        <activity android:name=".activities.DestroyHoldActivity"></activity>
+        <activity android:name=".activities.DestroyHoldActivity" />
+        <activity android:name=".activities.CreateBookActivity"></activity>
     </application>
 
 </manifest>

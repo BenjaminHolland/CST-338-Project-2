@@ -18,4 +18,13 @@
     <string name="USERNAME">Username</string>
     <string name="LOGIN">Login</string>
     <string name="CONFIRM">Confirm</string>
+
+    <string name="CREATE_BOOK_TITLE_HINT">Enter title</string>
+    <string name="CREATE_BOOK_AUTHOR_HINT">Enter author</string>
+    <string name="CREATE_BOOK_ISBN_HINT">Enter isbn</string>
+    <string name="CREATE_BOOK_FEE_HINT">Enter hourly fee</string>
+
+    <string name="CREATE_BOOK_PROMPT">Add a book?</string>
+    <string name="YES">Yes</string>
+    <string name="NO">No</string>
 </resources>
