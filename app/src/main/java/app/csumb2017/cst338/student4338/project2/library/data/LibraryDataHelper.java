@@ -82,6 +82,8 @@ public class LibraryDataHelper extends SQLiteOpenHelper {
     public Cursor getHoldsForUser(int user){
         return getReadableDatabase().rawQuery(
                 "SELECT * FROM "+LibraryDataContract.Holds.TableName+
+                        " JOIN "+LibraryDataContract.Books.TableName+
+                        " ON "+LibraryDataContract.Holds.Columns.TargetBook+"="+LibraryDataContract.Books.Columns._ID+
                         " WHERE "+LibraryDataContract.Holds.Columns.TargetUser+"=?"+
                         " AND "+LibraryDataContract.Holds.Columns.IsActive+"=1",new String[]{String.valueOf(user)});
     }
