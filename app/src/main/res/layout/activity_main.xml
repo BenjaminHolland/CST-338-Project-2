@@ -8,49 +8,52 @@
 
     <Button
         android:id="@+id/create_user_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/CREATE_USER"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/create_hold_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Button"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/create_user_button"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/CREATE_HOLD"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_user_button"
+        app:layout_constraintHorizontal_bias="0.501" />
 
     <Button
         android:id="@+id/destroy_hold_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Button"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/create_hold_button"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/DESTROY_HOLD"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_hold_button"
+        app:layout_constraintHorizontal_bias="0.501" />
 
     <Button
         android:id="@+id/manage_system_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:text="Button"
+        android:text="@string/MANAGE_SYSTEM"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/destroy_hold_button" />
+        app:layout_constraintTop_toBottomOf="@+id/destroy_hold_button"
+        app:layout_constraintHorizontal_bias="0.502" />
 </android.support.constraint.ConstraintLayout>
