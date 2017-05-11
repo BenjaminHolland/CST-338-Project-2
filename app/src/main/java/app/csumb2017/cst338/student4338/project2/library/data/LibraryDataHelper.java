@@ -111,6 +111,9 @@ public class LibraryDataHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(hold)}
         );
     }
+    public void createUser(String username,String password){
+        getWritableDatabase().insertOrThrow(LibraryDataContract.Users.TableName,null,LibraryDataContract.Users.buildEntry(username,password,false));
+    }
     public Cursor getAvailableBooks() {
         return getReadableDatabase().rawQuery(
                 "SELECT * FROM " + LibraryDataContract.Books.TableName +
