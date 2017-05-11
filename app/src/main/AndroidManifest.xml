@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".activities.CreateUserActivity" />
         <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.ViewLogsActivity"></activity>
+        <activity android:name=".activities.ViewLogsActivity" />
+        <activity android:name=".activities.CreateHoldActivity"></activity>
     </application>
 
 </manifest>

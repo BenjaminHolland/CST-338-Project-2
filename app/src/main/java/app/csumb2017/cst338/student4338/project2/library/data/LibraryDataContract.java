@@ -54,7 +54,7 @@ public class LibraryDataContract {
         public final static String CreateTable = "CREATE TABLE " + TableName + "(" +
                 Columns._ID + " INTEGER PRIMARY KEY," +
                 Columns.Title + " TEXT NOT NULL," +
-                Columns.Author + "TEXT NOT NULL," +
+                Columns.Author + " TEXT NOT NULL," +
                 Columns.Isbn + " TEXT NOT NULL UNIQUE," +
                 Columns.Fee + " REAL NOT NULL" +
                 ")";

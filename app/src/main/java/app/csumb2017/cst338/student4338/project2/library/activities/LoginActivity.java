@@ -39,6 +39,10 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void launchCreateHold(int user){
         Log.v("LOGIN","Launching Hold Creator.");
+        Intent createHoldIntent=new Intent(LoginActivity.this,CreateHoldActivity.class);
+        createHoldIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+        createHoldIntent.putExtra("USER",user);
+        startActivity(createHoldIntent);
         finish();
     }
     private void launchDestroyHold(int user){
