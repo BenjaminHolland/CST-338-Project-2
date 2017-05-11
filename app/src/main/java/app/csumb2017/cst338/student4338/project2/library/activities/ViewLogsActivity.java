@@ -21,7 +21,7 @@ public class ViewLogsActivity extends AppCompatActivity {
     LibraryDataHelper db;
 
     void onLeaving(){
-        AlertDialog.Builder bldr=new AlertDialog.Builder(getApplicationContext());
+        AlertDialog.Builder bldr=new AlertDialog.Builder(ViewLogsActivity.this);
         bldr.setMessage(R.string.CREATE_BOOK_PROMPT);
         bldr.setPositiveButton(R.string.YES, new DialogInterface.OnClickListener() {
             @Override
@@ -29,6 +29,7 @@ public class ViewLogsActivity extends AppCompatActivity {
                 Intent createBookIntent=new Intent(getApplicationContext(),CreateBookActivity.class);
                 createBookIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
                 startActivity(createBookIntent);
+
                 finish();
             }
         });
