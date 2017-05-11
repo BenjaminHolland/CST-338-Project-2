@@ -68,9 +68,8 @@ public class CreateHoldActivity extends AppCompatActivity {
                         checkin.add(Calendar.DAY_OF_YEAR,10);
                         double feeTotal=fee*10*24;
                         try{
-                            db.createHold(user,id,feeTotal);
+                            db.createHold(user,id,feeTotal,checkout.getTimeInMillis(),checkin.getTimeInMillis(),creation.getTimeInMillis());
                             db.log("PlaceHold|Success|\"Book="+String.valueOf(id)+"\"");
-
                             CreateHoldActivity.this.setResult(RESULT_OK,null);
                         }catch(Exception ex){
                             Log.e("CREATE_HOLD","Error",ex);
