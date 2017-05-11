@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import app.csumb2017.cst338.student4338.project2.library.CreateUserInvalidPassword;
-import app.csumb2017.cst338.student4338.project2.library.CreateUserInvalidUsername;
+import app.csumb2017.cst338.student4338.project2.library.CreateUserInvalidPasswordException;
+import app.csumb2017.cst338.student4338.project2.library.CreateUserInvalidUsernameException;
 import app.csumb2017.cst338.student4338.project2.library.R;
 import app.csumb2017.cst338.student4338.project2.library.data.LibraryDataHelper;
 
@@ -88,10 +88,10 @@ public class CreateUserActivity extends AppCompatActivity {
                 String password=((EditText)findViewById(R.id.password_input)).getText().toString();
                 try {
                     if (!isUsernameValid(username)){
-                        throw new CreateUserInvalidUsername();
+                        throw new CreateUserInvalidUsernameException();
                     }
                     if(!isPasswordValid(password)){
-                        throw new CreateUserInvalidPassword();
+                        throw new CreateUserInvalidPasswordException();
                     }
                     db.createUser(username,password);
                     db.log("UserCreateAttempt|Success|\"Created "+username+"\"");

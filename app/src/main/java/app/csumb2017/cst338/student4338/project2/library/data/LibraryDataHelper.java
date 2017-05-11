@@ -6,13 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 
-import app.csumb2017.cst338.student4338.project2.library.LoginIncorrectPassword;
+import app.csumb2017.cst338.student4338.project2.library.LoginIncorrectPasswordException;
 import app.csumb2017.cst338.student4338.project2.library.LoginNotAuthorizedException;
 import app.csumb2017.cst338.student4338.project2.library.LoginUserNotFoundException;
-import app.csumb2017.cst338.student4338.project2.library.R;
 
 /**
  * Created by Ben on 5/10/2017.
@@ -144,7 +142,7 @@ public class LibraryDataHelper extends SQLiteOpenHelper {
         }
         result.moveToFirst();
         if (!result.getString(1).equals(password)) {
-            throw new LoginIncorrectPassword();
+            throw new LoginIncorrectPasswordException();
         }
         if ((result.getInt(2) == 0) && requireAdmin) {
             throw new LoginNotAuthorizedException();
