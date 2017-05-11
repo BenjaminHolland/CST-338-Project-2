@@ -83,7 +83,8 @@ public class LibraryDataHelper extends SQLiteOpenHelper {
         return getReadableDatabase().rawQuery(
                 "SELECT * FROM "+LibraryDataContract.Holds.TableName+
                         " JOIN "+LibraryDataContract.Books.TableName+
-                        " ON "+LibraryDataContract.Holds.Columns.TargetBook+"="+LibraryDataContract.Books.Columns._ID+
+                        " ON "+LibraryDataContract.Holds.TableName+"."+LibraryDataContract.Holds.Columns.TargetBook+
+                        " = "+LibraryDataContract.Books.TableName+"."+LibraryDataContract.Books.Columns._ID+
                         " WHERE "+LibraryDataContract.Holds.Columns.TargetUser+"=?"+
                         " AND "+LibraryDataContract.Holds.Columns.IsActive+"=1",new String[]{String.valueOf(user)});
     }
