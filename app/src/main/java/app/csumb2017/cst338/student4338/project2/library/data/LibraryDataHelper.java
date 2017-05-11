@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 import app.csumb2017.cst338.student4338.project2.library.LoginIncorrectPassword;
 import app.csumb2017.cst338.student4338.project2.library.LoginNotAuthorizedException;
 import app.csumb2017.cst338.student4338.project2.library.LoginUserNotFoundException;
+import app.csumb2017.cst338.student4338.project2.library.R;
 
 /**
  * Created by Ben on 5/10/2017.
@@ -84,8 +85,18 @@ public class LibraryDataHelper extends SQLiteOpenHelper {
                         " WHERE "+LibraryDataContract.Holds.Columns.TargetUser+"=?"+
                         " AND "+LibraryDataContract.Holds.Columns.IsActive+"=1",new String[]{String.valueOf(user)});
     }
-    public void createHold(int user,int book,double totalFee){
+    public void createHold(int user,int book,double totalFee,long checkout,long checkin,long creation){
 
+        getWritableDatabase().insertOrThrow(LibraryDataContract.Holds.TableName,null,
+                LibraryDataContract.Holds.buildEntry(
+                        user,
+                        book,
+                        new Timestamp(checkout),
+                        new Timestamp(checkin),
+                        new Timestamp(creation),
+                        totalFee,
+                        true)
+        );
     }
     public void destroyHold(int hold){
         ContentValues disableHold=new ContentValues();

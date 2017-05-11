@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,16 +67,17 @@ public class CreateHoldActivity extends AppCompatActivity {
                         creation.setTime(now);
                         checkin.add(Calendar.DAY_OF_YEAR,10);
                         double feeTotal=fee*10*24;
-                        db.log("PlaceHold|Success|\"Book="+String.valueOf(id)+"\"");
-                        db.getWritableDatabase().insertOrThrow(LibraryDataContract.Holds.TableName,null,
-                                LibraryDataContract.Holds.buildEntry(
-                                        user,
-                                        (int)v.getTag(R.string.HOLD_VIEW_TARGET_BOOK_TAG),
-                                        new Timestamp(checkout.getTimeInMillis()),
-                                        new Timestamp(checkin.getTimeInMillis()),
-                                        new Timestamp(creation.getTimeInMillis()),
-                                        feeTotal,
-                                        true));
+                        try{
+                            db.createHold(user,id,feeTotal);
+                            db.log("PlaceHold|Success|\"Book="+String.valueOf(id)+"\"");
+
+                            CreateHoldActivity.this.setResult(RESULT_OK,null);
+                        }catch(Exception ex){
+                            Log.e("CREATE_HOLD","Error",ex);
+                            db.log("PlaceHold|Failure|"+ex.getMessage());
+                            CreateHoldActivity.this.setResult(RESULT_CANCELED,null);
+                        }
+                        CreateHoldActivity.this.finish();
                     setResult(RESULT_OK,null);
                     CreateHoldActivity.this.finish();
                     }
