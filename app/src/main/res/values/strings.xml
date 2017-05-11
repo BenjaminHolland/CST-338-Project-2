@@ -1,3 +1,13 @@
 <resources>
+    <string name="LOGIN_ADMIT_TYPE">LOGIN_ADMIT_TYPE</string>
+    <string name="LOGIN_ADMIT_ANY">LOGIN_ADMIT_ANY</string>
+    <string name="LOGIN_ADMIT_ADMIN">LOGIN_ADMIT_ADMIN</string>
+    <string name="LOGIN_ACTION_TYPE">LOGIN_ACTION_TYPE</string>
+    <string name="LOGIN_ACTION_CREATE_HOLD">LOGIN_ACTION_CREATE_HOLD</string>
+    <string name="LOGIN_ACTION_DESTROY_HOLD">LOGIN_ACTION_DESTROY_HOLD</string>
+    <string name="LOGIN_ACTION_MANAGE_SYSTEM">LOGIN_ACTION_MANAGE_SYSTEM</string>
     <string name="app_name">Library</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

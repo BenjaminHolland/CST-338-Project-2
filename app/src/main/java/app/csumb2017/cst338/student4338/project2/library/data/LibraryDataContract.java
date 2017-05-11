@@ -16,7 +16,32 @@ import java.util.List;
 public class LibraryDataContract {
     private LibraryDataContract() {
     }
+    public final static class Logs {
+        public static final String TableName = "Logs";
+
+        public static final class Columns implements BaseColumns {
+            public static final String When = "_When";
+            public static final String Message = "Message";
+        }
+
+        public static final String CreateTable = "CREATE TABLE " + TableName + "(" +
+                Columns._ID + " INTEGER PRIMARY KEY," +
+                Columns.When + " TEXT NOT NULL," +
+                Columns.Message + " TEXT NOT NULL" +
+                ")";
+        public static final String DropTable="DROP TABLE IF EXISTS "+TableName;
+        public static ContentValues buildEntry(Timestamp when,String message){
+            ContentValues values=new ContentValues();
+            values.put(Columns.When,when.toString());
+            values.put(Columns.Message,message.toString());
+            return values;
+        }
+        public static List<ContentValues> getIntialData(){
+            return Collections.unmodifiableList(new ArrayList<ContentValues>());
+        }
+    }
     public final static class Books {
+
         public static final String TableName = "Books";
 
         public final static class Columns implements BaseColumns {
@@ -26,7 +51,7 @@ public class LibraryDataContract {
             public static final String Fee = "Fee";
         }
 
-        public final static String CreateTable = "CREATE TABLE" + TableName + "(" +
+        public final static String CreateTable = "CREATE TABLE " + TableName + "(" +
                 Columns._ID + " INTEGER PRIMARY KEY," +
                 Columns.Title + " TEXT NOT NULL," +
                 Columns.Author + "TEXT NOT NULL," +
