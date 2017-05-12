@@ -28,4 +28,10 @@
     <string name="YES">Yes</string>
     <string name="NO">No</string>
     <string name="OK">OK</string>
+    <string name="CHECKOUT">Pickup</string>
+    <string name="CHECKIN">Dropoff</string>
+    <string name="HOLD">Reservation #</string>
+    <string name="TITLE">Title</string>
+    <string name="FEE">Fee</string>
+    <string name="USER">User</string>
 </resources>
