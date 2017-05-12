@@ -77,7 +77,7 @@ public class CreateBookActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String title=((EditText)findViewById(R.id.title_input)).getText().toString();
                 final String author=((EditText)findViewById(R.id.author_input)).getText().toString();
-                final String isbn=((EditText)findViewById(R.id.author_input)).getText().toString();
+                final String isbn=((EditText)findViewById(R.id.isbn_input)).getText().toString();
                 final String feeStr=((EditText)findViewById(R.id.fee_input)).getText().toString();
 
                 try {
