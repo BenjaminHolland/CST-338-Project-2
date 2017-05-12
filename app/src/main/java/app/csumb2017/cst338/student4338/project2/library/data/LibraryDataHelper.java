@@ -98,9 +98,24 @@ public class LibraryDataHelper extends SQLiteOpenHelper {
                         " WHERE "+LibraryDataContract.Holds.Columns.TargetUser+"=?"+
                         " AND "+LibraryDataContract.Holds.Columns.IsActive+"=1",new String[]{String.valueOf(user)});
     }
+    public String getBookTitle(int book){
+        Cursor c=getReadableDatabase().rawQuery("SELECT Title FROM Books WHERE Books._id=?",new String[]{String.valueOf(book)});
+        if(c.getCount()==0){
+            return "";
+        }else{
+            try{
+                c.moveToFirst();
+                return c.getString(0);
+            }catch (Exception ex){
+                Log.e("???","Error",ex);
+                return "";
+            }
+        }
+
+    }
     public String getUsername(int user){
         Cursor c=getReadableDatabase().rawQuery("SELECT Username FROM Users WHERE Users._id=?",new String[]{String.valueOf(user)});
-        if(c.getCount()<0){
+        if(c.getCount()==0){
             return "";
         }try{
             c.moveToFirst();

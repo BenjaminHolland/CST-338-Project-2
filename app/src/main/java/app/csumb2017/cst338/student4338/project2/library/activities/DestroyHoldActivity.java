@@ -24,14 +24,15 @@ import app.csumb2017.cst338.student4338.project2.library.data.LibraryDataHelper;
 public class DestroyHoldActivity extends AppCompatActivity {
     private int id;
     private LibraryDataHelper db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_destroy_hold);
-        id=getIntent().getIntExtra("USER",-1);
-        db=LibraryDataHelper.getInstance(this);
-        Cursor holds=db.getHoldsForUser(id);
-        if(holds.getCount()>0) {
+        id = getIntent().getIntExtra("USER", -1);
+        db = LibraryDataHelper.getInstance(this);
+        Cursor holds = db.getHoldsForUser(id);
+        if (holds.getCount() > 0) {
             CursorAdapter adapter = new CursorAdapter(this, holds, false) {
                 @Override
                 public View newView(Context context, Cursor cursor, ViewGroup parent) {
@@ -45,8 +46,10 @@ public class DestroyHoldActivity extends AppCompatActivity {
                     final int holdId = cursor.getInt(0);
                     final Timestamp checkout = Timestamp.valueOf(cursor.getString(3));
                     final Timestamp checkin = Timestamp.valueOf(cursor.getString(4));
+                    final Timestamp created=Timestamp.valueOf(cursor.getString(5));
                     final double fee = cursor.getDouble(6);
                     final String title = cursor.getString(9);
+                    final String user = db.getUsername(id);
                     ((TextView) view.findViewById(R.id.title_view)).setText(title);
                     ((TextView) view.findViewById(R.id.fee_view)).setText(feeFormat.format(fee));
                     ((TextView) view.findViewById(R.id.checkout_view)).setText(checkout.toString());
@@ -56,7 +59,12 @@ public class DestroyHoldActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             try {
                                 db.destroyHold(holdId);
-                                db.log("DestroyHold|Success|\"Hold=" + String.valueOf(holdId) + "\"");
+                                db.log("DestroyHold|Success|\n\"" +
+                                        "Hold=" + String.valueOf(holdId) +"\n"+
+                                        "User=" + user+"\n"+
+                                        "Checkout="+checkout.toString()+"\n"+
+                                        "Checkin="+checkin.toString()+"\n"+
+                                        "Created="+created.toString()+"\n\"");
                                 DestroyHoldActivity.this.setResult(RESULT_OK);
 
                             } catch (Exception ex) {
@@ -69,8 +77,8 @@ public class DestroyHoldActivity extends AppCompatActivity {
                 }
             };
             ((ListView) findViewById(R.id.hold_list)).setAdapter(adapter);
-        }else{
-            AlertDialog.Builder bldr=new AlertDialog.Builder(this);
+        } else {
+            AlertDialog.Builder bldr = new AlertDialog.Builder(this);
             bldr.setTitle("No Holds");
             bldr.setMessage("You have no books reserved.");
             bldr.setOnDismissListener(new DialogInterface.OnDismissListener() {
