@@ -14,7 +14,9 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 
 
@@ -54,6 +56,11 @@ public class DestroyHoldActivity extends AppCompatActivity {
                     ((TextView) view.findViewById(R.id.fee_view)).setText(feeFormat.format(fee));
                     ((TextView) view.findViewById(R.id.checkout_view)).setText(checkout.toString());
                     ((TextView) view.findViewById(R.id.checkin_view)).setText(checkin.toString());
+                    final DateFormat timestampFormat=DateFormat.getDateTimeInstance();
+                    final Date checkoutDate=new Date(checkout.getTime());
+                    final Date checkinDate=new Date(checkin.getTime());
+                    final Date createionDate=new Date(created.getTime());
+
                     view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -62,9 +69,9 @@ public class DestroyHoldActivity extends AppCompatActivity {
                                 db.log("DestroyHold|Success|\n\"" +
                                         "Hold=" + String.valueOf(holdId) +"\n"+
                                         "User=" + user+"\n"+
-                                        "Checkout="+checkout.toString()+"\n"+
-                                        "Checkin="+checkin.toString()+"\n"+
-                                        "Created="+created.toString()+"\n\"");
+                                        "Checkout="+timestampFormat.format(checkoutDate)+"\n"+
+                                        "Checkin="+timestampFormat.format(checkinDate)+"\n"+
+                                        "Created="+timestampFormat.format(createionDate)+"\n\"");
                                 DestroyHoldActivity.this.setResult(RESULT_OK);
 
                             } catch (Exception ex) {
