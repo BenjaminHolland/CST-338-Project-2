@@ -97,9 +97,9 @@ public class LibraryDataHelper extends SQLiteOpenHelper {
                         " WHERE "+LibraryDataContract.Holds.Columns.TargetUser+"=?"+
                         " AND "+LibraryDataContract.Holds.Columns.IsActive+"=1",new String[]{String.valueOf(user)});
     }
-    public void createHold(int user,int book,double totalFee,long checkout,long checkin,long creation){
+    public long createHold(int user,int book,double totalFee,long checkout,long checkin,long creation){
 
-        getWritableDatabase().insertOrThrow(LibraryDataContract.Holds.TableName,null,
+        return getWritableDatabase().insertOrThrow(LibraryDataContract.Holds.TableName,null,
                 LibraryDataContract.Holds.buildEntry(
                         user,
                         book,
@@ -134,6 +134,13 @@ public class LibraryDataHelper extends SQLiteOpenHelper {
                 null);
     }
 
+    public void createBook(String title,String author, String isbn,double fee){
+        getWritableDatabase().insertOrThrow(
+                LibraryDataContract.Books.TableName,
+                null,
+                LibraryDataContract.Books.buildEntry(title,author,isbn,fee));
+
+    }
     public int login(String username, String password, boolean requireAdmin) {
         Cursor result = getReadableDatabase().query(
                 LibraryDataContract.Users.TableName,

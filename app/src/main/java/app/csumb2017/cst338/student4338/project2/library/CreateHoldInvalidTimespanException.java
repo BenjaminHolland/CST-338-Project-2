@@ -5,4 +5,7 @@ package app.csumb2017.cst338.student4338.project2.library;
  */
 
 public class CreateHoldInvalidTimespanException extends RuntimeException {
+    public CreateHoldInvalidTimespanException() {
+        super("Invalid checkout duration.");
+    }
 }

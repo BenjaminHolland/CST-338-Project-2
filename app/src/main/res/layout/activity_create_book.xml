@@ -67,7 +67,7 @@
         tools:text="Fee" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/confirm_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"

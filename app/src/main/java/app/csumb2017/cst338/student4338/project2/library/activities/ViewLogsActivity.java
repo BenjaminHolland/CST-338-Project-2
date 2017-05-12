@@ -29,7 +29,6 @@ public class ViewLogsActivity extends AppCompatActivity {
                 Intent createBookIntent=new Intent(getApplicationContext(),CreateBookActivity.class);
                 createBookIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
                 startActivity(createBookIntent);
-
                 finish();
             }
         });
