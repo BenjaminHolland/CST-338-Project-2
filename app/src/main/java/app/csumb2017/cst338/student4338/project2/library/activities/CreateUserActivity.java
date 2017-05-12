@@ -1,6 +1,7 @@
 package app.csumb2017.cst338.student4338.project2.library.activities;
 
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteConstraintException;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import app.csumb2017.cst338.student4338.project2.library.CreateUserDuplicateException;
 import app.csumb2017.cst338.student4338.project2.library.CreateUserInvalidPasswordException;
 import app.csumb2017.cst338.student4338.project2.library.CreateUserInvalidUsernameException;
 import app.csumb2017.cst338.student4338.project2.library.R;
@@ -109,8 +111,14 @@ public class CreateUserActivity extends AppCompatActivity {
                         }
                     });
                     bldr.show();
+
                 }catch(Exception ex){
-                    onError(ex);
+                    Log.e("CreateUser","Failure",ex);
+                    if(ex instanceof SQLiteConstraintException){
+                        onError(new CreateUserDuplicateException());
+                    }else {
+                        onError(ex);
+                    }
                 }
             }
         });
