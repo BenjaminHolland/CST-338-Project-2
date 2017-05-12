@@ -139,8 +139,14 @@ public class CreateHoldActivity extends AppCompatActivity {
                                                                     dt /= 60;
                                                                     dt /= 60;
                                                                     final double feeTotal = fee * dt;
+                                                                    final double days=dt/24.0;
+
+                                                                    final DecimalFormat feeFormat=new DecimalFormat("\u00A4#0.00");
                                                                     AlertDialog.Builder bldr = new AlertDialog.Builder(CreateHoldActivity.this);
                                                                     try {
+                                                                        if(days>7){
+                                                                            throw new CreateHoldInvalidTimespanException();
+                                                                        }
                                                                         final Calendar creation = Calendar.getInstance();
                                                                         final DateFormat format=DateFormat.getDateTimeInstance();
                                                                         creation.setTime(new Date());
@@ -150,11 +156,11 @@ public class CreateHoldActivity extends AppCompatActivity {
                                                                         View holdView=getLayoutInflater().inflate(R.layout.fragment_hold_confirmation,null);
                                                                         Date checkinDate=new Date(checkin.getTimeInMillis());
                                                                         Date checkoutDate=new Date(checkout.getTimeInMillis());
+                                                                        ((TextView)holdView.findViewById(R.id.hold_view)).setText(String.valueOf(newHoldId));
                                                                         ((TextView)holdView.findViewById(R.id.title_view)).setText(title);
                                                                         ((TextView)holdView.findViewById(R.id.checkin_view)).setText(format.format(checkinDate));
                                                                         ((TextView)holdView.findViewById(R.id.checkout_view)).setText(format.format(checkoutDate));
-                                                                        ((TextView)holdView.findViewById(R.id.fee_view)).setText(String.valueOf(feeTotal));
-                                                                        //Need to put in user name.
+                                                                        ((TextView)holdView.findViewById(R.id.fee_view)).setText(feeFormat.format(feeTotal));
                                                                         ((TextView)holdView.findViewById(R.id.username_view)).setText(db.getUsername(user));
                                                                         finalResult.setView(holdView);
                                                                         finalResult.setOnDismissListener(new DialogInterface.OnDismissListener() {
