@@ -99,7 +99,7 @@ public class LibraryDataHelper extends SQLiteOpenHelper {
                         " AND "+LibraryDataContract.Holds.Columns.IsActive+"=1",new String[]{String.valueOf(user)});
     }
     public String getUsername(int user){
-        Cursor c=getReadableDatabase().rawQuery("SELECT Username FROM Users WHWERE Users._id=?",new String[]{String.valueOf(user)});
+        Cursor c=getReadableDatabase().rawQuery("SELECT Username FROM Users WHERE Users._id=?",new String[]{String.valueOf(user)});
         if(c.getCount()<0){
             return "";
         }try{

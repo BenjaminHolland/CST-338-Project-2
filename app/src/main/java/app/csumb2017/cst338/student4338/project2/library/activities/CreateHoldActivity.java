@@ -155,7 +155,7 @@ public class CreateHoldActivity extends AppCompatActivity {
                                                                         ((TextView)holdView.findViewById(R.id.checkout_view)).setText(format.format(checkoutDate));
                                                                         ((TextView)holdView.findViewById(R.id.fee_view)).setText(String.valueOf(feeTotal));
                                                                         //Need to put in user name.
-                                                                        ((TextView)holdView.findViewById(R.id.username_view)).setText(String.valueOf(user));
+                                                                        ((TextView)holdView.findViewById(R.id.username_view)).setText(db.getUsername(user));
                                                                         finalResult.setView(holdView);
                                                                         finalResult.setOnDismissListener(new DialogInterface.OnDismissListener() {
                                                                             @Override
