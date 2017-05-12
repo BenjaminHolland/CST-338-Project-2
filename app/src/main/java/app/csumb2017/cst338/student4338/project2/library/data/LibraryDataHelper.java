@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.sql.Timestamp;
 
@@ -96,6 +97,18 @@ public class LibraryDataHelper extends SQLiteOpenHelper {
                         " = "+LibraryDataContract.Books.TableName+"."+LibraryDataContract.Books.Columns._ID+
                         " WHERE "+LibraryDataContract.Holds.Columns.TargetUser+"=?"+
                         " AND "+LibraryDataContract.Holds.Columns.IsActive+"=1",new String[]{String.valueOf(user)});
+    }
+    public String getUsername(int user){
+        Cursor c=getReadableDatabase().rawQuery("SELECT Username FROM Users WHWERE Users._id=?",new String[]{String.valueOf(user)});
+        if(c.getCount()<0){
+            return "";
+        }try{
+            c.moveToFirst();
+            return c.getString(0);
+        }catch (Exception ex){
+            Log.e("???","Error",ex);
+            return "";
+        }
     }
     public long createHold(int user,int book,double totalFee,long checkout,long checkin,long creation){
 
