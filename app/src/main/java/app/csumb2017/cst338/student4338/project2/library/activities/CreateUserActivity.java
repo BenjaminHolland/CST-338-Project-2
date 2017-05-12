@@ -95,8 +95,20 @@ public class CreateUserActivity extends AppCompatActivity {
                     }
                     db.createUser(username,password);
                     db.log("UserCreateAttempt|Success|\"Created "+username+"\"");
-                    CreateUserActivity.this.setResult(RESULT_OK);
-                    CreateUserActivity.this.finish();
+                    AlertDialog.Builder bldr=new AlertDialog.Builder(CreateUserActivity.this);
+                    bldr.setTitle("Account Created");
+                    bldr.setMessage("Account has been created.");
+                    bldr.setCancelable(false);
+                    bldr.setNeutralButton(R.string.OK,null);
+                    bldr.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+
+                            CreateUserActivity.this.setResult(RESULT_OK);
+                            CreateUserActivity.this.finish();
+                        }
+                    });
+                    bldr.show();
                 }catch(Exception ex){
                     onError(ex);
                 }
